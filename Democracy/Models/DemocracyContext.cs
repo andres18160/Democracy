@@ -18,5 +18,7 @@ namespace Democracy.Models
         }
 
         public DbSet<State> State { get; set; }
+
+        public System.Data.Entity.DbSet<Democracy.Models.Group> Groups { get; set; }
     }
 }
