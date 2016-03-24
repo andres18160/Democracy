@@ -78,9 +78,9 @@ C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\bin\es\Microsoft.Owin.Sec
 C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\bin\es\Microsoft.Owin.Security.Google.resources.dll
 C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
 C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\obj\Debug\Democracy.csprojResolveAssemblyReference.cache
+C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\obj\Debug\Democracy.Migrations.InitialCreate.resources
+C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\obj\Debug\Democracy.Migrations._20160320.resources
+C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\obj\Debug\Democracy.csproj.GenerateResource.Cache
 C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\obj\Debug\Democracy.dll
 C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\obj\Debug\Democracy.pdb
-C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\obj\Debug\Democracy.Migrations.InitialCreate.resources
-C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\obj\Debug\Democracy.csproj.GenerateResource.Cache
-C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\obj\Debug\Democracy.Migrations._20160320.resources
+C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\obj\Debug\Democracy.csprojResolveAssemblyReference.cache

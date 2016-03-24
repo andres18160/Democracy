@@ -11,6 +11,7 @@ namespace Democracy.Models
         [Key]
         public int VotingId { get; set; }
         [Required(ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Voting Description")]
         [StringLength(50, ErrorMessage = "El campo {0} no puede contener mas de {2} caracteres",
          MinimumLength = 3)]
         public string Description { get; set; }
@@ -25,13 +26,13 @@ namespace Democracy.Models
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Date Time Start")]        
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0,yyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime DateTimeStart { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Date Time End")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0,yyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime DateTimeEnd { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
@@ -39,7 +40,7 @@ namespace Democracy.Models
         public bool IsForAllUsers { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
-        [Display(Name = "Is Enable Blak Vote")]
+        [Display(Name = "Is Enable Blank Vote")]
         public bool IsEnableBlakVote { get; set; }
 
         [Display(Name = "Quantity Votes")]
@@ -50,6 +51,8 @@ namespace Democracy.Models
 
         [Display(Name = "Winner")]
         public int CandidateWinId { get; set; }
+
+        public virtual State State { get; set; }
 
     }
 }

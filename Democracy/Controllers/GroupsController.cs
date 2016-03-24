@@ -14,6 +14,69 @@ namespace Democracy.Controllers
     {
         private DemocracyContext db = new DemocracyContext();
 
+        [HttpGet]
+        public ActionResult DeleteMember(int id)
+        {
+            var member = db.GroupMembers.Find(id);
+            if (member != null)
+            {
+                db.GroupMembers.Remove(member);
+                db.SaveChanges();
+            }
+            return RedirectToAction(string.Format("Details/{0}",member.GroupId));
+        }
+        // GET: Groups
+        [HttpGet]
+        public ActionResult AddMember(int groupId)
+        {
+            //ViewBag.UserId = new SelectList(db.Users, "UserId", "FullName");//Devuelva la lista de usuarios 
+            ViewBag.UserId = new SelectList(db.Users
+                .OrderBy(u => u.FirstName)
+                .ThenBy(u => u.LastName), "UserId", "FullName");//devuelve la lista de usuarios ordenados por nombre y luego por apellidos
+            var view = new AddMemberView
+            {
+                GroupId = groupId,
+            };
+            
+            return View(view);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddMember(AddMemberView view)
+        {
+            if (!ModelState.IsValid)
+            {
+                //ViewBag.UserId = new SelectList(db.Users, "UserId", "FullName");//Devuelva la lista de usuarios 
+                ViewBag.UserId = new SelectList(db.Users
+                    .OrderBy(u => u.FirstName)
+                    .ThenBy(u => u.LastName), "UserId", "FullName");//devuelve la lista de usuarios ordenados por nombre y luego por apellidos
+                return View(view);
+            }
+         
+
+            var member = db.GroupMembers
+                .Where(gm => gm.GroupId == view.GroupId && gm.UserId == view.UserId)
+                .FirstOrDefault();
+            if (member != null)
+            {
+                //ViewBag.UserId = new SelectList(db.Users, "UserId", "FullName");//Devuelva la lista de usuarios 
+                ViewBag.UserId = new SelectList(db.Users
+                    .OrderBy(u => u.FirstName)
+                    .ThenBy(u => u.LastName), "UserId", "FullName");//devuelve la lista de usuarios ordenados por nombre y luego por apellidos
+
+                ViewBag.Error = "El miembro ya pertenece al grupo";
+                return View(view);
+            }
+            member = new GroupMember
+            {
+                GroupId=view.GroupId,
+                UserId=view.UserId,
+            };
+            db.GroupMembers.Add(member);
+            db.SaveChanges();
+            return RedirectToAction(string.Format("Details/{0}",view.GroupId));
+        }
+
         // GET: Groups
         public ActionResult Index()
         {
@@ -32,7 +95,13 @@ namespace Democracy.Controllers
             {
                 return HttpNotFound();
             }
-            return View(group);
+            var view = new GroupDetailsView
+            {
+                GroupId=group.GroupId,
+                Descripcion=group.Descripcion,
+                Members=group.GroupMember.ToList(),
+            };
+            return View(view);
         }
 
         // GET: Groups/Create

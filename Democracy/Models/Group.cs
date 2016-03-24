@@ -15,5 +15,9 @@ namespace Democracy.Models
         [StringLength(50, ErrorMessage = "El campo {0} no puede contener mas de {2} caracteres",
             MinimumLength = 3)]
         public string Descripcion { get; set; }
+
+        //Decimos que la tabla Group puede tener muchos group members
+        public virtual ICollection<GroupMember> GroupMember  { get; set; }
+
     }
 }

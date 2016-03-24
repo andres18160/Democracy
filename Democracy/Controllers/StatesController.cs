@@ -140,7 +140,23 @@ namespace Democracy.Controllers
                 return HttpNotFound();
             }
             db.State.Remove(state);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null && ex.InnerException.InnerException != null && ex.InnerException.InnerException.Message.Contains("REFERENCE"))
+                {
+                    ViewBag.Error = "El estado no se puede eliminar por que tiene registros relacionados";
+                }
+                else
+                {
+                    ViewBag.Error = ex.Message;
+                }
+                return View(state);
+            }
+           
             return RedirectToAction("Index");
         }
 
