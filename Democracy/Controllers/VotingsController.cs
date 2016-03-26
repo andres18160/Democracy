@@ -41,7 +41,13 @@ namespace Democracy.Controllers
         public ActionResult Create()
         {
             ViewBag.StateId = new SelectList(db.State, "StateId", "Descripcion");
-            return View();
+            var view = new VotingView
+            {
+                DateStart=DateTime.Now,
+                DateEnd=DateTime.Now,
+            };
+
+            return View(view);
         }
 
         // POST: Votings/Create
@@ -49,17 +55,32 @@ namespace Democracy.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VotingId,Description,StateId,Remarks,DateTimeStart,DateTimeEnd,IsForAllUsers,IsEnableBlakVote,QuantityVotes,QuantityBlackVotes,CandidateWinId")] Voting voting)
+        public ActionResult Create( VotingView view)
         {
             if (ModelState.IsValid)
             {
+                var voting=new Voting
+                {
+                    DateTimeEnd=view.DateEnd
+                                .AddHours(view.TimeEnd.Hour)
+                                .AddMinutes(view.TimeEnd.Minute),
+                    DateTimeStart = view.DateStart
+                                .AddHours(view.TimeStart.Hour)
+                                .AddMinutes(view.TimeStart.Minute),
+                    Description=view.Description,
+                    IsEnableBlakVote=view.IsEnableBlakVote,
+                    IsForAllUsers=view.IsForAllUsers,
+                    Remarks=view.Remarks,
+                    StateId = view.StateId,
+
+                };
                 db.Votings.Add(voting);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.StateId = new SelectList(db.State, "StateId", "Descripcion", voting.StateId);
-            return View(voting);
+            ViewBag.StateId = new SelectList(db.State, "StateId", "Descripcion", view.StateId);
+            return View(view);
         }
 
         // GET: Votings/Edit/5
@@ -69,13 +90,29 @@ namespace Democracy.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Voting voting = db.Votings.Find(id);
+            var voting = db.Votings.Find(id);
             if (voting == null)
             {
                 return HttpNotFound();
             }
+
+            var view = new VotingView
+            {
+                DateEnd = voting.DateTimeEnd,
+                DateStart = voting.DateTimeStart,
+                Description=voting.Description,
+                IsEnableBlakVote=voting.IsEnableBlakVote,
+                IsForAllUsers=voting.IsForAllUsers,   
+                Remarks=voting.Remarks,
+                StateId=voting.StateId,
+                TimeEnd=voting.DateTimeEnd,
+                TimeStart=voting.DateTimeStart,
+                VotingId=voting.VotingId,
+
+            };
+
             ViewBag.StateId = new SelectList(db.State, "StateId", "Descripcion", voting.StateId);
-            return View(voting);
+            return View(view);
         }
 
         // POST: Votings/Edit/5
@@ -83,16 +120,33 @@ namespace Democracy.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VotingId,Description,StateId,Remarks,DateTimeStart,DateTimeEnd,IsForAllUsers,IsEnableBlakVote,QuantityVotes,QuantityBlackVotes,CandidateWinId")] Voting voting)
+        public ActionResult Edit(VotingView view)
         {
             if (ModelState.IsValid)
             {
+                var voting = new Voting
+                {
+                    DateTimeEnd = view.DateEnd
+                                .AddHours(view.TimeEnd.Hour)
+                                .AddMinutes(view.TimeEnd.Minute),
+                    DateTimeStart = view.DateStart
+                                .AddHours(view.TimeStart.Hour)
+                                .AddMinutes(view.TimeStart.Minute),
+                    Description = view.Description,
+                    IsEnableBlakVote = view.IsEnableBlakVote,
+                    IsForAllUsers = view.IsForAllUsers,
+                    Remarks = view.Remarks,
+                    StateId = view.StateId,
+                    VotingId=view.VotingId,
+
+                };
+
                 db.Entry(voting).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.StateId = new SelectList(db.State, "StateId", "Descripcion", voting.StateId);
-            return View(voting);
+            ViewBag.StateId = new SelectList(db.State, "StateId", "Descripcion", view.StateId);
+            return View(view);
         }
 
         // GET: Votings/Delete/5

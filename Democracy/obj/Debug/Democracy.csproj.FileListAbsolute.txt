@@ -83,4 +83,3 @@ C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\obj\Debug\Democracy.Migra
 C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\obj\Debug\Democracy.csproj.GenerateResource.Cache
 C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\obj\Debug\Democracy.dll
 C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\obj\Debug\Democracy.pdb
-C:\Users\CAMILOANDRES\Source\Repos\Democracy\Democracy\obj\Debug\Democracy.csprojResolveAssemblyReference.cache

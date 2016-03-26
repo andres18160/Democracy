@@ -23,8 +23,9 @@
 
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Members[0].GroupId }, new { @class = "btn btn-primary" }) |
-    @Html.ActionLink("Add Member", "AddMember", new { groupId = Model.Members[0].GroupId }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GroupId }, new { @class = "btn btn-primary" }) |
+    
+    @Html.ActionLink("Add Member", "AddMember", new { groupId = Model.GroupId }, new { @class = "btn btn-warning" }) |
     @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success" })
 </p>
 <h3>Members</h3>
