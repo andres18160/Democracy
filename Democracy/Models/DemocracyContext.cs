@@ -36,5 +36,9 @@ namespace Democracy.Models
         public DbSet<User> Users { get; set; }
 
         public DbSet<GroupMember> GroupMembers { get; set; }
+
+        public DbSet<VotingGoup> VotingGoups { get; set; }
+
+        public DbSet<Candidate> Candidates { get; set; }
     }
 }

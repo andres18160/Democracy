@@ -19,5 +19,7 @@ namespace Democracy.Models
         //Decimos que la tabla Group puede tener muchos group members
         public virtual ICollection<GroupMember> GroupMember  { get; set; }
 
+        public virtual ICollection<VotingGoup> VotingGroups { get; set; }
+
     }
 }

@@ -55,5 +55,7 @@ namespace Democracy.Models
 
         //un usuario puede pertenecer a muchos GropMembers
         public virtual ICollection<GroupMember> GroupMember { get; set; }
+
+        public virtual ICollection<Candidate> Candidates { get; set; }
     }
 }

@@ -206,8 +206,12 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddCandidateView.cs" />
+    <Compile Include="Models\AddGroupView.cs" />
     <Compile Include="Models\AddMemberView.cs" />
+    <Compile Include="Models\Candidate.cs" />
     <Compile Include="Models\DemocracyContext.cs" />
+    <Compile Include="Models\DatailsVotingView.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\GroupDetailsView.cs" />
     <Compile Include="Models\GroupMember.cs" />
@@ -217,6 +221,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserView.cs" />
     <Compile Include="Models\Voting.cs" />
+    <Compile Include="Models\VotingGoup.cs" />
     <Compile Include="Models\VotingView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -309,6 +314,8 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Groups\AddMember.cshtml" />
+    <Content Include="Views\Votings\AddGroup.cshtml" />
+    <Content Include="Views\Votings\AddCandidate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

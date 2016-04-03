@@ -6,9 +6,8 @@ using System.Web;
 
 namespace Democracy.Models
 {
-    public class Voting
+    public class DetailsVotingView
     {
-        [Key]
         public int VotingId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
@@ -25,7 +24,7 @@ namespace Democracy.Models
         public string Remarks { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
-        [Display(Name = "Date Time Start")]        
+        [Display(Name = "Date Time Start")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime DateTimeStart { get; set; }
@@ -53,13 +52,11 @@ namespace Democracy.Models
         [Display(Name = "Winner")]
         public int CandidateWinId { get; set; }
 
-        public virtual State State { get; set; }
+        public State State { get; set; }
 
-        public virtual ICollection<VotingGoup> VotingGroups { get; set; }
+        public List<VotingGoup> VotingGroups { get; set; }
 
-        public virtual ICollection<Candidate> Candidates { get; set; }
-
- 
+        public List<Candidate> Candidates { get; set; }
 
     }
 }
